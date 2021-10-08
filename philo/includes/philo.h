@@ -6,7 +6,7 @@
 /*   By: aalcara- <aalcara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 20:34:59 by aalcara-          #+#    #+#             */
-/*   Updated: 2021/09/24 23:13:31 by aalcara-         ###   ########.fr       */
+/*   Updated: 2021/09/28 00:02:26 by aalcara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,16 @@
 
 # include <stdio.h> //printf
 # include <stdlib.h> //exit_return
+# include <pthread.h>
+
+typedef struct s_args
+{
+	int	num_philos;
+	int	tm_die;
+	int	tm_eat;
+	int	tm_sleep;
+	int	num_eats;
+} t_args;
 
 // checker
 int	check_arguments(int argc, char **argv);
