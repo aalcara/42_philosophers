@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalcara- <aalcara-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 20:10:17 by aalcara-          #+#    #+#             */
-/*   Updated: 2021/10/06 17:09:54 by aalcara-         ###   ########.fr       */
+/*   Updated: 2021/10/19 17:05:33 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,34 +27,19 @@ t_args	convert_args(char **argv)
 	return (args);
 }
 
-void	plance_a_philo(int num)
-{
-	pthread_t *philo;
-
-	
-}
-
-void	start_simulation(t_args args)
-{
-	int i;
-
-	i = 0;
-	while (i < args.num_philos)
-	{
-		place_a_philo(i);
-		i++;
-	}
-}
 
 int	main(int argc, char **argv)
 {
-	t_args	args;
+	t_dinner	dinner;
 	
+	//TODO ? adicionar verificação do número de philos
 	if (check_arguments(argc, argv) != 0)
 		return (EXIT_FAILURE);
-	args = convert_args(argv);
-	printf("%d %d %d %d %d\n", args.num_philos, args.tm_die, args.tm_eat, args.tm_sleep, args.num_eats);
-	start_simulation(args);
+	dinner.args = convert_args(argv);
+	// printf("%d %d %d %d %d\n", dinner.args.num_philos, dinner.args.tm_die, dinner.args.tm_eat, dinner.args.tm_sleep, dinner.args.num_eats);
+	if (!init_simulation(&dinner))
+		return (EXIT_FAILURE);
+	
 
 	
 	return (EXIT_SUCCESS);
