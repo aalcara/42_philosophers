@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aalcara- <aalcara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 20:34:59 by aalcara-          #+#    #+#             */
-/*   Updated: 2021/10/19 17:28:06 by coder            ###   ########.fr       */
+/*   Updated: 2021/10/23 00:33:49 by aalcara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # define MIN_ARGS 5
 # define MAX_ARGS 6
 # define MAX_NUM_PHILOS 4
+# define EVEN_DELAY 60000
 
 # define WRONG_NUM_ARGS "Wrong number of arguments!"
 # define BIGGER_THAN_ZERO "Use numbers biggers than zero!"
@@ -34,6 +35,7 @@
 # include <unistd.h> //usleep
 # include <pthread.h>
 # include <stdbool.h> //bool
+#include <sys/time.h> //gettimeofday
 
 typedef struct s_args
 {
@@ -42,7 +44,7 @@ typedef struct s_args
 	int	tm_eat;
 	int	tm_sleep;
 	int	num_eats;
-} t_args;
+}	t_args;
 
 typedef struct s_mutex
 {
@@ -74,10 +76,13 @@ typedef struct s_philo
 int		check_arguments(int argc, char **argv);
 bool	init_simulation(t_dinner *dinner);
 bool	start_simulation(t_dinner *dinner, t_philo *philo);
+void	*routine(void *philo_ptr);
+void	*verify_end_conditions(void *philo_ptr);
 
 // utils
 int				ft_atoi(const char *nptr);
 void			ft_bzero(void *s, size_t n);
 long long int	get_current_time(void);
+int				ft_strcmp(const char *s1, const char *s2);
 
 #endif

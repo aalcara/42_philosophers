@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aalcara- <aalcara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 20:10:17 by aalcara-          #+#    #+#             */
-/*   Updated: 2021/10/19 17:05:33 by coder            ###   ########.fr       */
+/*   Updated: 2021/10/23 11:27:24 by aalcara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,23 @@ t_args	convert_args(char **argv)
 	return (args);
 }
 
+static void print_end_message(t_dinner *dinner)
+{
+	if (dinner->tm_of_death)
+		printf("%-10lld %-5d %s\n", dinner->tm_of_death, dinner->end, DIE);
+	else
+		printf("Philosophers ate %d times!\n", dinner->args.num_eats);
+}
+
+static void	destroy_mutexes(t_mutex *mutex, int total)
+{
+	int i = 0;
+	
+	while (i++ <= total)
+		pthread_mutex_destroy(&mutex->fork[i]);
+	pthread_mutex_destroy(&mutex->text);
+	pthread_mutex_destroy(&mutex->death);
+}
 
 int	main(int argc, char **argv)
 {
@@ -36,11 +53,9 @@ int	main(int argc, char **argv)
 	if (check_arguments(argc, argv) != 0)
 		return (EXIT_FAILURE);
 	dinner.args = convert_args(argv);
-	// printf("%d %d %d %d %d\n", dinner.args.num_philos, dinner.args.tm_die, dinner.args.tm_eat, dinner.args.tm_sleep, dinner.args.num_eats);
 	if (!init_simulation(&dinner))
 		return (EXIT_FAILURE);
-	
-
-	
+	print_end_message(&dinner);
+	destroy_mutexes(&dinner.mutex, dinner.args.num_philos);
 	return (EXIT_SUCCESS);
 }

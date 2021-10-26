@@ -1,21 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalcara- <aalcara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/19 17:22:04 by coder             #+#    #+#             */
-/*   Updated: 2021/10/19 15:11:49 by aalcara-         ###   ########.fr       */
+/*   Created: 2021/08/27 21:02:46 by aalcara-          #+#    #+#             */
+/*   Updated: 2021/10/22 22:26:54 by aalcara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-long long int	get_current_time(void)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	struct timeval	time;
+	unsigned int	i;
+	int				calc;
 
-	gettimeofday(&time, NULL);
-	return (time.tv_sec * 1000 + time.tv_usec / 1000);
+	i = 0;
+	if ((!s1 && s2) || (s1 && !s2))
+		return (1);
+	if (!s1 && !s2)
+		return (0);
+	while (s1[i] && s2[i])
+	{
+		calc = ((*(unsigned char *)(s1 + i)) - (*(unsigned char *)(s2 + i)));
+		if (calc != 0)
+			return (calc);
+		i++;
+	}
+	calc = ((*(unsigned char *)(s1 + i)) - (*(unsigned char *)(s2 + i)));
+	return (calc);
 }
