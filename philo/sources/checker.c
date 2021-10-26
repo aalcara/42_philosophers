@@ -6,7 +6,7 @@
 /*   By: aalcara- <aalcara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 20:10:17 by aalcara-          #+#    #+#             */
-/*   Updated: 2021/09/24 23:13:37 by aalcara-         ###   ########.fr       */
+/*   Updated: 2021/10/26 17:20:23 by aalcara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	check_num_of_args(int argc)
 
 static int	check_biger_zero(char *str)
 {
-	int number;
+	int	number;
 
 	number = ft_atoi(str);
 	if (number <= 0)

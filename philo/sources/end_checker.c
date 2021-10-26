@@ -6,21 +6,11 @@
 /*   By: aalcara- <aalcara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 17:24:50 by coder             #+#    #+#             */
-/*   Updated: 2021/10/23 11:28:10 by aalcara-         ###   ########.fr       */
+/*   Updated: 2021/10/26 17:20:05 by aalcara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-// bool	define_death(t_philo *philo, long long int elapsed)----------------------
-// {
-// 	pthread_mutex_lock(&philo->dinner->mutex.death);
-// 	philo->dinner->end = philo->index;
-// 	philo->dinner->tm_of_death = elapsed;
-// 	pthread_mutex_unlock(&philo->dinner->mutex.death);
-// 	return (true);
-// }
-// -- verify end
 
 static bool	ended(t_philo *philo)
 {

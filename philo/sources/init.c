@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aalcara- <aalcara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 15:25:13 by coder             #+#    #+#             */
-/*   Updated: 2021/10/19 17:26:28 by coder            ###   ########.fr       */
+/*   Updated: 2021/10/26 17:30:11 by aalcara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	init_mutex(t_dinner *dinner)
 	t_mutex	*mutex;
 	int		total;
 	int		i;
-	
+
 	i = 0;
 	mutex = &dinner->mutex;
 	total = dinner->args.num_philos;

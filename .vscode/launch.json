@@ -4,13 +4,15 @@
 	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
 	"version": "0.2.0",
 	"configurations": [
+	
+		
 		{
 			"name": "(gdb) Launch",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "${workspaceFolder}/philo/a.out",
-			"args": ["12", "22", "32", "24"],
-			"stopAtEntry": false,
+			"program": "${workspaceFolder}/philo/philo",
+			"args": ["2", "800", "200", "200"],
+			"stopAtEntry": true,
 			"cwd": "${fileDirname}",
 			"environment": [],
 			"externalConsole": false,

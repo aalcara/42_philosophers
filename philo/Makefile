@@ -6,13 +6,13 @@
 #    By: aalcara- <aalcara-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/24 20:09:13 by aalcara-          #+#    #+#              #
-#    Updated: 2021/10/23 00:35:26 by aalcara-         ###   ########.fr        #
+#    Updated: 2021/10/26 17:25:19 by aalcara-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
-SRC_FILES = checker.c  end_checker.c  ft_atoi.c  ft_bzero.c  ft_strcmp.c \
-			init.c  philosophers.c  routine.c  start.c  utils.c
+SRC_FILES = actions.c checker.c end_checker.c ft_atoi.c ft_bzero.c \
+			ft_strcmp.c init.c philosophers.c routine.c start.c utils.c
 SRC_DIR = sources
 OBJ_DIR = objects
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))

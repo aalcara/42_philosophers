@@ -6,7 +6,7 @@
 /*   By: aalcara- <aalcara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 17:24:50 by coder             #+#    #+#             */
-/*   Updated: 2021/10/22 22:55:28 by aalcara-         ###   ########.fr       */
+/*   Updated: 2021/10/26 17:20:48 by aalcara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ static bool	create_threads(int total, t_philo *philo, pthread_t *thread)
 static bool	join_threads(int total, pthread_t *thread)
 {
 	int	i;
-	
+
 	i = 0;
-	while  (++i <= total)
+	while (++i <= total)
 	{
 		if (pthread_join(thread[i - 1], NULL))
 		{

@@ -6,7 +6,7 @@
 /*   By: aalcara- <aalcara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 20:10:17 by aalcara-          #+#    #+#             */
-/*   Updated: 2021/10/23 11:27:24 by aalcara-         ###   ########.fr       */
+/*   Updated: 2021/10/26 17:29:54 by aalcara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_args	convert_args(char **argv)
 	return (args);
 }
 
-static void print_end_message(t_dinner *dinner)
+static void	print_end_message(t_dinner *dinner)
 {
 	if (dinner->tm_of_death)
 		printf("%-10lld %-5d %s\n", dinner->tm_of_death, dinner->end, DIE);
@@ -37,8 +37,9 @@ static void print_end_message(t_dinner *dinner)
 
 static void	destroy_mutexes(t_mutex *mutex, int total)
 {
-	int i = 0;
-	
+	int	i;
+
+	i = 0;
 	while (i++ <= total)
 		pthread_mutex_destroy(&mutex->fork[i]);
 	pthread_mutex_destroy(&mutex->text);
@@ -48,7 +49,7 @@ static void	destroy_mutexes(t_mutex *mutex, int total)
 int	main(int argc, char **argv)
 {
 	t_dinner	dinner;
-	
+
 	//TODO ? adicionar verificação do número de philos
 	if (check_arguments(argc, argv) != 0)
 		return (EXIT_FAILURE);
