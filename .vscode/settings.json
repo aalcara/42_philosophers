@@ -40,10 +40,12 @@
 		"algorithm": "c",
 		"system_error": "c",
 		"type_traits": "c",
-		"cerrno": "c"
+		"cerrno": "c",
+		"stdbool.h": "c"
 	},
 	"cSpell.words": [
 		"aalcara",
 		"libft"
-	]
+	],
+	"editor.insertSpaces": false
 }
