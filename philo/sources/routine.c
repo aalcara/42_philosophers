@@ -6,38 +6,38 @@
 /*   By: aalcara- <aalcara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 17:24:50 by coder             #+#    #+#             */
-/*   Updated: 2021/10/26 17:26:26 by aalcara-         ###   ########.fr       */
+/*   Updated: 2021/11/02 11:42:16 by aalcara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-bool	eat(t_philo *philo)
+static int	eat(t_philo *philo)
 {
 	take_forks(philo);
 	if (!print_status(philo, EAT))
-		return (false);
+		return (FALSE);
 	do_act(philo->dinner->args.tm_eat);
 	drop_forks(philo);
 	if (philo->dinner->args.num_eats)
 		if (philo->eaten_times >= philo->dinner->args.num_eats)
-			return (false);
-	return (true);
+			return (FALSE);
+	return (TRUE);
 }
 
-bool	sleeping(t_philo *philo)
+static int	sleeping(t_philo *philo)
 {
 	if (!print_status(philo, SLEEP))
-		return (false);
+		return (FALSE);
 	do_act(philo->dinner->args.tm_sleep);
-	return (true);
+	return (TRUE);
 }
 
-bool	think(t_philo *philo)
+static int	think(t_philo *philo)
 {
 	if (!print_status(philo, THINK))
-		return (false);
-	return (true);
+		return (FALSE);
+	return (TRUE);
 }
 
 void	*routine(void *philo_ptr)

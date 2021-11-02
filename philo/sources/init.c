@@ -6,7 +6,7 @@
 /*   By: aalcara- <aalcara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 15:25:13 by coder             #+#    #+#             */
-/*   Updated: 2021/10/26 17:30:11 by aalcara-         ###   ########.fr       */
+/*   Updated: 2021/11/02 11:36:38 by aalcara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	init_philos(t_philo *philo, t_dinner *dinner, int i)
 	}
 }
 
-static bool	check_only_one_philo(t_dinner *dinner)
+static int	check_only_one_philo(t_dinner *dinner)
 {
 	if (dinner->args.num_philos == 1)
 	{
@@ -57,20 +57,20 @@ static bool	check_only_one_philo(t_dinner *dinner)
 		dinner->tm_of_death = dinner->args.tm_die + 1;
 		dinner->end = 1;
 		usleep(dinner->args.tm_die * 1000);
-		return (true);
+		return (TRUE);
 	}
-	return (false);
+	return (FALSE);
 }
 
-bool	init_simulation(t_dinner *dinner)
+int	init_simulation(t_dinner *dinner)
 {
 	t_philo	philo[MAX_NUM_PHILOS + 2];
 
 	init_philos(philo, dinner, 0);
 	init_mutex(dinner);
 	if (check_only_one_philo(dinner))
-		return (true);
+		return (TRUE);
 	if (!start_simulation(dinner, philo))
-		return (false);
-	return (true);
+		return (FALSE);
+	return (TRUE);
 }

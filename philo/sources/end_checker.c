@@ -6,21 +6,21 @@
 /*   By: aalcara- <aalcara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 17:24:50 by coder             #+#    #+#             */
-/*   Updated: 2021/10/26 17:20:05 by aalcara-         ###   ########.fr       */
+/*   Updated: 2021/11/02 11:40:46 by aalcara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static bool	ended(t_philo *philo)
+static int	ended(t_philo *philo)
 {
 	long long int	elapsed;
 
 	if (philo->dinner->end)
-		return (true);
+		return (TRUE);
 	if (philo->dinner->args.num_eats)
 		if (philo->eaten_times >= philo->dinner->args.num_eats)
-			return (true);
+			return (TRUE);
 	elapsed = get_current_time() - philo->dinner->start_time;
 	if ((elapsed - philo->last_meal) > philo->dinner->args.tm_die)
 	{
@@ -28,9 +28,9 @@ static bool	ended(t_philo *philo)
 		philo->dinner->end = philo->index;
 		philo->dinner->tm_of_death = elapsed;
 		pthread_mutex_unlock(&philo->dinner->mutex.death);
-		return (true);
+		return (TRUE);
 	}
-	return (false);
+	return (FALSE);
 }
 
 void	*verify_end_conditions(void *philo_ptr)
