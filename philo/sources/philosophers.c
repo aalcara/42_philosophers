@@ -6,7 +6,7 @@
 /*   By: aalcara- <aalcara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 20:10:17 by aalcara-          #+#    #+#             */
-/*   Updated: 2021/10/26 17:29:54 by aalcara-         ###   ########.fr       */
+/*   Updated: 2021/11/03 10:46:59 by aalcara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int	main(int argc, char **argv)
 {
 	t_dinner	dinner;
 
-	//TODO ? adicionar verificação do número de philos
 	if (check_arguments(argc, argv) != 0)
 		return (EXIT_FAILURE);
 	dinner.args = convert_args(argv);

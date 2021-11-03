@@ -6,7 +6,7 @@
 /*   By: aalcara- <aalcara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 20:34:59 by aalcara-          #+#    #+#             */
-/*   Updated: 2021/11/02 11:45:16 by aalcara-         ###   ########.fr       */
+/*   Updated: 2021/11/03 10:49:32 by aalcara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@
 # define EVEN_DELAY 60000
 # define TRUE 1
 # define FALSE 0
+# define EXIT_SUCCESS 0
+# define EXIT_FAILURE 1
 
+# define MAX_PHILOS_ERROR "Don't run with more than 1000 philos!"
 # define WRONG_NUM_ARGS "Wrong number of arguments!"
 # define BIGGER_THAN_ZERO "Use numbers biggers than zero!"
 # define USAGE "Usage:./philo n_philo ms_to_die ms_to_eat _ms_to_sleep [n_eat]" 

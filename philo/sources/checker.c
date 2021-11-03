@@ -6,7 +6,7 @@
 /*   By: aalcara- <aalcara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 20:10:17 by aalcara-          #+#    #+#             */
-/*   Updated: 2021/10/26 17:20:23 by aalcara-         ###   ########.fr       */
+/*   Updated: 2021/11/02 12:08:11 by aalcara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,19 @@ static int	check_biger_zero(char *str)
 	return (EXIT_SUCCESS);
 }
 
+static int	check_num_philos(char *str)
+{
+	int	number;
+
+	number = ft_atoi(str);
+	if (number > MAX_NUM_PHILOS)
+	{
+		printf("%s\n", MAX_PHILOS_ERROR);
+		return (EXIT_FAILURE);
+	}
+	return (EXIT_SUCCESS);
+}
+
 int	check_arguments(int argc, char **argv)
 {
 	int	i;
@@ -73,5 +86,7 @@ int	check_arguments(int argc, char **argv)
 		}
 		i++;
 	}
+	if (check_num_philos(argv[1]))
+		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
