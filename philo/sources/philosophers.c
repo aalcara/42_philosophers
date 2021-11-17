@@ -6,7 +6,7 @@
 /*   By: aalcara- <aalcara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 20:10:17 by aalcara-          #+#    #+#             */
-/*   Updated: 2021/11/03 10:46:59 by aalcara-         ###   ########.fr       */
+/*   Updated: 2021/11/17 14:38:01 by aalcara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_args	convert_args(char **argv)
 static void	print_end_message(t_dinner *dinner)
 {
 	if (dinner->tm_of_death)
-		printf("%-10lld %-5d %s\n", dinner->tm_of_death, dinner->end, DIE);
+		printf("%lld %d %s\n", dinner->tm_of_death, dinner->end, DIE);
 	else
 		printf("Philosophers ate %d times!\n", dinner->args.num_eats);
 }

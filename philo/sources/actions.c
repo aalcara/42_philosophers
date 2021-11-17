@@ -6,7 +6,7 @@
 /*   By: aalcara- <aalcara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 17:24:50 by coder             #+#    #+#             */
-/*   Updated: 2021/11/17 11:47:32 by aalcara-         ###   ########.fr       */
+/*   Updated: 2021/11/17 14:37:36 by aalcara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	print_status(t_philo *philo, char *status)
 		return (FALSE);
 	pthread_mutex_lock(&philo->dinner->mutex.text);
 	elapsed = get_current_time() - philo->dinner->start_time;
-	printf("%-10lld ", elapsed);
-	printf("%-5d %s\n", philo->index, status);
+	printf("%lld ", elapsed);
+	printf("%d %s\n", philo->index, status);
 	if (ft_strcmp(status, EAT) == 0)
 		philo->last_meal = elapsed;
 	pthread_mutex_unlock(&philo->dinner->mutex.text);
