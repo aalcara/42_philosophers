@@ -15,6 +15,7 @@
 			"args": ["4", "800", "200", "200"],
 			"stopAtEntry": true,
 			"cwd": "${fileDirname}",
+			"enableMultiThread": true,
 			"environment": [],
 			"externalConsole": false,
 			"MIMode": "gdb",

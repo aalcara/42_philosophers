@@ -6,7 +6,7 @@
 /*   By: aalcara- <aalcara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 17:24:50 by coder             #+#    #+#             */
-/*   Updated: 2021/11/02 11:42:16 by aalcara-         ###   ########.fr       */
+/*   Updated: 2021/11/17 11:07:46 by aalcara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@ static int	eat(t_philo *philo)
 {
 	take_forks(philo);
 	if (!print_status(philo, EAT))
+	{
+		drop_forks(philo);
 		return (FALSE);
+	}
 	do_act(philo->dinner->args.tm_eat);
 	drop_forks(philo);
 	if (philo->dinner->args.num_eats)

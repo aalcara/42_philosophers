@@ -6,7 +6,7 @@
 /*   By: aalcara- <aalcara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 17:24:50 by coder             #+#    #+#             */
-/*   Updated: 2021/11/02 11:35:27 by aalcara-         ###   ########.fr       */
+/*   Updated: 2021/11/17 11:44:25 by aalcara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	print_status(t_philo *philo, char *status)
 	elapsed = get_current_time() - philo->dinner->start_time;
 	printf("%-10lld ", elapsed);
 	printf("%-5d %s\n", philo->index, status);
+	// printf("%lld ", elapsed);
+	// printf("%d %s\n", philo->index, status);
 	if (ft_strcmp(status, EAT) == 0)
 		philo->last_meal = elapsed;
 	pthread_mutex_unlock(&philo->dinner->mutex.text);
@@ -30,9 +32,23 @@ int	print_status(t_philo *philo, char *status)
 
 void	take_forks(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->dinner->mutex.fork[philo->hand[0]]);
+	int	first_fork;
+	int second_fork;
+
+	if (philo->index % 2 == 1 && philo->index != philo->dinner->args.num_philos)
+	{
+		first_fork = philo->hand[1];
+		second_fork = philo->hand[0];
+	}
+	else
+	{
+		usleep(EVEN_DELAY);
+		first_fork = philo->hand[0];
+		second_fork = philo->hand[1];
+	}
+	pthread_mutex_lock(&philo->dinner->mutex.fork[first_fork]);
+	pthread_mutex_lock(&philo->dinner->mutex.fork[second_fork]);
 	print_status(philo, FORK);
-	pthread_mutex_lock(&philo->dinner->mutex.fork[philo->hand[1]]);
 	print_status(philo, FORK);
 }
 

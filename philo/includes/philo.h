@@ -6,7 +6,7 @@
 /*   By: aalcara- <aalcara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 20:34:59 by aalcara-          #+#    #+#             */
-/*   Updated: 2021/11/03 10:49:32 by aalcara-         ###   ########.fr       */
+/*   Updated: 2021/11/17 11:31:33 by aalcara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # define MIN_ARGS 5
 # define MAX_ARGS 6
 # define MAX_NUM_PHILOS 1000
-# define EVEN_DELAY 60000
+# define EVEN_DELAY 6000
 # define TRUE 1
 # define FALSE 0
 # define EXIT_SUCCESS 0
@@ -83,7 +83,6 @@ void			take_forks(t_philo *philo);
 void			drop_forks(t_philo *philo);
 void			do_act(long long int time);
 int				print_status(t_philo *philo, char *status);
-// utils
 int				ft_atoi(const char *nptr);
 void			ft_bzero(void *s, size_t n);
 long long int	get_current_time(void);
