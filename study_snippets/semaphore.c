@@ -2,9 +2,15 @@
 #include <pthread.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <stdlib.h>
 
 #include <sys/ipc.h>
 #include <sys/shm.h>
+#include <sys/wait.h>
+
+#include <fcntl.h>
+#include <errno.h>
+#include <string.h>
 
 void ft_putchar(char c)
 {
@@ -42,51 +48,69 @@ void ft_putstr(char str)
 	ft_putchar('\n');
 }
 
-void *use_system(void *p_index)
+void use_system(void *p_index, sem_t *sem_test)
 {
 	int index;
 	char str;
-	sem_t sem_test;
-
-	sem_test = *sem_open("sem_name", 1);
-	if (&sem_test == SEM_FAILED)
-		printf("Error opening Semaphore");
 
 	index = *(int *)p_index;
 	while (1)
 	{
-		sem_wait(&sem_test);
-		if (index == 1)
-			str = '1';
-		else
-			str = '2';
-		// sleep(1);
+		usleep(200000);
+		sem_wait(sem_test);
+		str = index + '0';
 		ft_putstr(str);
-		sem_post(&sem_test);
-	} 
+		sem_post(sem_test);
+	}
+	return;
+}
 
-	sem_close(&sem_test);
-	sem_unlink("sem_name");
-	return NULL;
+
+void run_child(int index, pid_t *pid, sem_t *sem_test)
+{
+	*pid = fork();
+	// printf("index: %d pid: %d\n", index, &pid);
+	if (*pid == 0)
+	{
+		use_system(&index, sem_test);
+			
+		// char cindex = index + '0';
+		// write(1, &cindex, 1);
+		// exit(0);
+	}
 }
 
 int main(void)
 {
-	pthread_t user1;
-	pthread_t user2;
+	pid_t pid;
+	int num_users = 9;
+	int status;
+
+	sem_t *sem_test;
+	int sem_value = 1;
+	sem_unlink("sem_name");
+	sem_test = sem_open("sem_name", O_CREAT | O_EXCL, 0644, sem_value);
+	if (sem_test == SEM_FAILED)
+		fprintf(stderr, "sem_open() failed.  errno:%d : %s\n", errno, strerror(errno));
+
+	int u_index = 0;
+	for (int i = 0; i < num_users; i++)
+	{
+		
+		// usleep(200000);
+		u_index++;
+		run_child(u_index, &pid, sem_test);
+		if (pid == 0)
+			break;
+		
+	}
 	
-	int u_ind1 = 1;
-	int u_ind2 = 2;
+	if (pid > 0)
+	{
+		waitpid(pid, &status, WUNTRACED);
+	}
 
-	int *u_index1 = &u_ind1;
-	int *u_index2 = &u_ind2;
-
-
-	pthread_create(&user1, NULL, &use_system, u_index1);
-	pthread_create(&user1, NULL, &use_system, u_index2);
-
-
-	pthread_join(user1, NULL);
-	pthread_join(user2, NULL);
+	sem_unlink("sem_name");
+	sem_close(sem_test);
 
 }
