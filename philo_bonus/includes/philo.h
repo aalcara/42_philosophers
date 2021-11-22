@@ -6,7 +6,7 @@
 /*   By: aalcara- <aalcara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 20:34:59 by aalcara-          #+#    #+#             */
-/*   Updated: 2021/11/22 01:33:32 by aalcara-         ###   ########.fr       */
+/*   Updated: 2021/11/22 18:29:20 by aalcara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,18 @@
 # define MAX_ARGS 6
 # define MAX_NUM_PHILOS 1000
 # define EVEN_DELAY 6000
+# define FORK_DELAY 1000
 # define TRUE 1
 # define FALSE 0
 # define EXIT_SUCCESS 0
 # define EXIT_FAILURE 1
-# define SEM_FLAGS O_CREAT | O_EXCL
-# define SEM_PERM 0777
-
 # define MAX_PHILOS_ERROR "Don't run with more than 1000 philos!"
 # define WRONG_NUM_ARGS "Wrong number of arguments!"
 # define BIGGER_THAN_ZERO "Use numbers biggers than zero!"
 # define USAGE "Usage:./philo n_philo ms_to_die ms_to_eat _ms_to_sleep [n_eat]" 
-// # define THREAD_CREATE "Error creating thread" 
 # define THREAD_JOIN "Error joining thread"
 # define ERR_CREATE_PHILO "Error creating philo process" 
+# define ERR_WAIT "Error on sem_wait"
 # define FORK "has taken a fork"
 # define EAT "is eating"
 # define SLEEP "is sleeping"

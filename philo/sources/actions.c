@@ -6,7 +6,7 @@
 /*   By: aalcara- <aalcara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 17:24:50 by coder             #+#    #+#             */
-/*   Updated: 2021/11/18 15:01:07 by aalcara-         ###   ########.fr       */
+/*   Updated: 2021/11/22 18:42:42 by aalcara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	take_forks(t_philo *philo)
 	}
 	else
 	{
-		usleep(EVEN_DELAY);
+		usleep(FORK_DELAY);
 		first_fork = philo->hand[0];
 		second_fork = philo->hand[1];
 	}

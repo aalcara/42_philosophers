@@ -52,14 +52,16 @@ void use_system(void *p_index, sem_t *sem_test)
 {
 	int index;
 	char str;
+	int i = 0;
 
 	index = *(int *)p_index;
-	while (1)
+	while (i++ < 2)
 	{
 		usleep(200000);
 		sem_wait(sem_test);
-		str = index + '0';
-		ft_putstr(str);
+		// str = index + '0';
+		// ft_putstr(str);
+		printf("user [%d] is using the system\n", getpid());
 		sem_post(sem_test);
 	}
 	return;
@@ -68,49 +70,49 @@ void use_system(void *p_index, sem_t *sem_test)
 
 void run_child(int index, pid_t *pid, sem_t *sem_test)
 {
-	*pid = fork();
+	pid[index] = fork();
 	// printf("index: %d pid: %d\n", index, &pid);
-	if (*pid == 0)
+	if (pid[index] == 0)
 	{
 		use_system(&index, sem_test);
-			
 		// char cindex = index + '0';
 		// write(1, &cindex, 1);
-		// exit(0);
+		exit(0);
 	}
 }
+#define SEM_FLAGS O_CREAT | O_EXCL
 
 int main(void)
 {
-	pid_t pid;
+	pid_t pid[10];
 	int num_users = 9;
 	int status;
 
 	sem_t *sem_test;
 	int sem_value = 1;
 	sem_unlink("sem_name");
-	sem_test = sem_open("sem_name", O_CREAT | O_EXCL, 0644, sem_value);
+	sem_test = sem_open("sem_name", SEM_FLAGS, 0644, sem_value);
 	if (sem_test == SEM_FAILED)
 		fprintf(stderr, "sem_open() failed.  errno:%d : %s\n", errno, strerror(errno));
 
-	int u_index = 0;
 	for (int i = 0; i < num_users; i++)
 	{
 		
 		// usleep(200000);
-		u_index++;
-		run_child(u_index, &pid, sem_test);
-		if (pid == 0)
-			break;
-		
+		// printf("%d\n", i);
+		run_child(i, pid, sem_test);
 	}
-	
-	if (pid > 0)
+
+
+	for (int i = 0; i < num_users; i++)
 	{
-		waitpid(pid, &status, WUNTRACED);
+		// printf("%d\n", i);
+		pid_t waiter = waitpid(-1, &status, 0);
+		if (WIFEXITED(status))
+			printf("Child %d terminated with status: %d. [%d][%d]\n",waiter, WEXITSTATUS(status), pid[i], getpid());
 	}
 
 	sem_unlink("sem_name");
 	sem_close(sem_test);
-
+	printf("fim\n");
 }
