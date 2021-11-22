@@ -6,7 +6,7 @@
 #    By: aalcara- <aalcara-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/24 20:09:13 by aalcara-          #+#    #+#              #
-#    Updated: 2021/10/26 17:25:19 by aalcara-         ###   ########.fr        #
+#    Updated: 2021/11/22 20:09:37 by aalcara-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
 
 CC = clang
-CFLAGS = -Wall -Wextra -Werror -g -pthread
+CFLAGS = -Wall -Wextra -Werror -g -pthread -fsanitize=address
 HEADERS = -I includes
 RM = rm -fr
 
