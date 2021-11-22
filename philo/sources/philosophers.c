@@ -6,7 +6,7 @@
 /*   By: aalcara- <aalcara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 20:10:17 by aalcara-          #+#    #+#             */
-/*   Updated: 2021/11/17 14:38:01 by aalcara-         ###   ########.fr       */
+/*   Updated: 2021/11/21 19:01:41 by aalcara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	main(int argc, char **argv)
 {
 	t_dinner	dinner;
 
+	ft_bzero(&dinner, sizeof(t_dinner));
 	if (check_arguments(argc, argv) != 0)
 		return (EXIT_FAILURE);
 	dinner.args = convert_args(argv);

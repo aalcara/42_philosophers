@@ -6,7 +6,7 @@
 /*   By: aalcara- <aalcara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 15:25:13 by coder             #+#    #+#             */
-/*   Updated: 2021/11/11 09:39:16 by aalcara-         ###   ########.fr       */
+/*   Updated: 2021/11/21 11:17:49 by aalcara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	check_only_one_philo(t_dinner *dinner)
 {
 	if (dinner->args.num_philos == 1)
 	{
-		printf("%-10d %-3d %-20s\n", 0, 1, FORK);
+		printf("%d %d %s\n", 0, 1, FORK);
 		dinner->tm_of_death = dinner->args.tm_die + 1;
 		dinner->end = 1;
 		usleep(dinner->args.tm_die * 1000);
