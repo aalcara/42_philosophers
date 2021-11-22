@@ -6,7 +6,7 @@
 /*   By: aalcara- <aalcara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 17:24:50 by coder             #+#    #+#             */
-/*   Updated: 2021/11/22 18:29:27 by aalcara-         ###   ########.fr       */
+/*   Updated: 2021/11/22 19:19:03 by aalcara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	eat(t_philo *philo)
 {
-	usleep(FORK_DELAY);
+	usleep(EVEN_DELAY);
 	take_forks(philo);
 	if (!print_status(philo, EAT))
 	{

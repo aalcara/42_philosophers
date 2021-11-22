@@ -6,7 +6,7 @@
 /*   By: aalcara- <aalcara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 20:34:59 by aalcara-          #+#    #+#             */
-/*   Updated: 2021/11/22 18:42:28 by aalcara-         ###   ########.fr       */
+/*   Updated: 2021/11/22 20:00:16 by aalcara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define MAX_ARGS 6
 # define MAX_NUM_PHILOS 1000
 # define EVEN_DELAY 6000
-# define FORK_DELAY 1000
+# define FORK_DELAY 100
 # define TRUE 1
 # define FALSE 0
 # define EXIT_SUCCESS 0
