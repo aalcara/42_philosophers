@@ -6,7 +6,7 @@
 /*   By: aalcara- <aalcara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 17:24:50 by coder             #+#    #+#             */
-/*   Updated: 2021/11/22 18:20:24 by aalcara-         ###   ########.fr       */
+/*   Updated: 2021/11/22 18:50:49 by aalcara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	print_status(t_philo *philo, char *status)
 void	take_forks(t_philo *philo)
 {
 	sem_wait(philo->dinner->semaphores.forks);
-	// sem_wait(philo->dinner->semaphores.forks);
 	print_status(philo, FORK);
 	print_status(philo, FORK);
 }
@@ -38,7 +37,6 @@ void	take_forks(t_philo *philo)
 void	drop_forks(t_philo *philo)
 {
 	sem_post(philo->dinner->semaphores.forks);
-	// sem_post(philo->dinner->semaphores.forks);
 	philo->eaten_times++;
 }
 

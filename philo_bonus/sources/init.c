@@ -6,7 +6,7 @@
 /*   By: aalcara- <aalcara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 15:25:13 by coder             #+#    #+#             */
-/*   Updated: 2021/11/22 18:20:15 by aalcara-         ###   ########.fr       */
+/*   Updated: 2021/11/22 18:51:07 by aalcara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	init_semaphores(t_dinner *dinner)
 	sem_unlink("death");
 	sem_unlink("finish");
 	sem_unlink("satisfied");
-	semaphores->forks = sem_open("forks", O_CREAT | O_EXCL, 0777, total/2);
+	semaphores->forks = sem_open("forks", O_CREAT | O_EXCL, 0777, total / 2);
 	semaphores->text = sem_open("text", O_CREAT | O_EXCL, 0777, 1);
 	semaphores->death = sem_open("death", O_CREAT | O_EXCL, 0777, 1);
 	semaphores->finish = sem_open("finish", O_CREAT | O_EXCL, 0777, 0);
