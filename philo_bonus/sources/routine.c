@@ -6,7 +6,7 @@
 /*   By: aalcara- <aalcara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 17:24:50 by coder             #+#    #+#             */
-/*   Updated: 2021/11/17 11:07:46 by aalcara-         ###   ########.fr       */
+/*   Updated: 2021/11/22 02:13:24 by aalcara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,15 @@ static int	think(t_philo *philo)
 	return (TRUE);
 }
 
-void	*routine(void *philo_ptr)
+void	*routine(t_philo *philo)
 {
-	t_philo		*philo;
 	pthread_t	end_searcher;
 
-	philo = (t_philo *)philo_ptr;
 	if (philo->index % 2 == 0)
 		usleep(EVEN_DELAY);
 	pthread_create(&end_searcher, NULL, verify_end_conditions, philo);
 	pthread_detach(end_searcher);
 	while (eat(philo) && sleeping(philo) && think(philo))
 		continue ;
-	return (NULL);
+	return(0);
 }

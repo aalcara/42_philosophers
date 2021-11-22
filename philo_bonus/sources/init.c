@@ -6,54 +6,54 @@
 /*   By: aalcara- <aalcara-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 15:25:13 by coder             #+#    #+#             */
-/*   Updated: 2021/11/11 09:39:16 by aalcara-         ###   ########.fr       */
+/*   Updated: 2021/11/22 02:05:39 by aalcara-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static void	define_forks_index(t_philo *philo, int index, int last_philo)
+static void	init_semaphores(t_dinner *dinner)
 {
-	philo[index].hand[0] = index;
-	philo[index].hand[1] = index + 1;
-	if (index == last_philo)
-		philo[index].hand[1] = 1;
-}
-
-static void	init_mutex(t_dinner *dinner)
-{
-	t_mutex	*mutex;
-	int		total;
-	int		i;
-
-	i = 0;
-	mutex = &dinner->mutex;
-	total = dinner->args.num_philos;
-	while (i++ <= total)
-		pthread_mutex_init(&mutex->fork[i], NULL);
-	pthread_mutex_init(&mutex->text, NULL);
-	pthread_mutex_init(&mutex->death, NULL);
-}
-
-static void	init_philos(t_philo *philo, t_dinner *dinner, int i)
-{
-	int	total;
+	t_semaphores	*semaphores;
+	int				total;
 
 	total = dinner->args.num_philos;
-	while (++i <= total)
-	{
-		ft_bzero(&philo[i], sizeof(t_philo));
-		philo[i].index = i;
-		define_forks_index(philo, i, total);
-		philo[i].dinner = dinner;
-	}
+	semaphores = &dinner->semaphores;
+	sem_unlink("forks");
+	sem_unlink("text");
+	sem_unlink("death");
+	sem_unlink("finish");
+	sem_unlink("satisfied");
+	semaphores->forks = sem_open("forks", SEM_FLAGS, SEM_PERM, total);
+	semaphores->text = sem_open("text", SEM_FLAGS, SEM_PERM, 1);
+	semaphores->death = sem_open("death", SEM_FLAGS, SEM_PERM, 1);
+	semaphores->finish = sem_open("finish", SEM_FLAGS, SEM_PERM, 0);
+	semaphores->satisfied = sem_open("satisfied", SEM_FLAGS, SEM_PERM, 0);
+
 }
+
+// static void	init_philos(t_philo *philo, t_dinner *dinner)
+// {
+// 	int	total;
+// 	int i;
+
+// 	i = 0;
+// 	total = dinner->args.num_philos;
+// 	while (++i <= total)
+// 	{
+// 		// ft_bzero(&philo[i], sizeof(t_philo));
+// 		philo[i].index = i;
+// 		philo[i].dinner = dinner;
+// 		// printf("1dinner = %d\n", philo[i].dinner->args.tm_die);
+		
+// 	}
+// }
 
 static int	check_only_one_philo(t_dinner *dinner)
 {
 	if (dinner->args.num_philos == 1)
 	{
-		printf("%-10d %-3d %-20s\n", 0, 1, FORK);
+		printf("%d %d %s\n", 0, 1, FORK);
 		dinner->tm_of_death = dinner->args.tm_die + 1;
 		dinner->end = 1;
 		usleep(dinner->args.tm_die * 1000);
@@ -66,11 +66,27 @@ int	init_simulation(t_dinner *dinner)
 {
 	t_philo	philo[MAX_NUM_PHILOS + 2];
 
-	init_philos(philo, dinner, 0);
-	init_mutex(dinner);
+	// init_philos(&philo[0], dinner);
+	int	total;
+	int i;
+
+	i = 0;
+	total = dinner->args.num_philos;
+	while (++i <= total)
+	{
+		// ft_bzero(&philo[i], sizeof(t_philo));
+		philo[i].index = i;
+		philo[i].dinner = dinner;
+		// printf("1dinner = %d\n", philo[i].dinner->args.tm_die);
+		
+	}
+
+	// printf("2dinner = %d\n", philo[1].dinner->args.tm_die);//
+	init_semaphores(dinner);
 	if (check_only_one_philo(dinner))
 		return (TRUE);
 	if (!start_simulation(dinner, philo))
 		return (FALSE);
+	// printf("4time of death = %lld\n", dinner->tm_of_death);
 	return (TRUE);
 }
